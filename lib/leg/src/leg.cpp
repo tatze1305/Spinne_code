@@ -1,27 +1,21 @@
 #include <leg.h>
 
 
-Leg::Leg(int _axisPin1, int _axisPin2, int _axisPin3, int min, int max){
+Leg::Leg(Axis const& _axisPin1, Axis const& _axisPin2, Axis const& _axisPin3) : axis1(_axisPin1), axis2(_axisPin2), axis3(_axisPin3)
+{
     ESP32PWM::allocateTimer(0);
     ESP32PWM::allocateTimer(1);
     ESP32PWM::allocateTimer(2);
     ESP32PWM::allocateTimer(3);
-
-    axis1.setPeriodHertz(50);
-    axis2.setPeriodHertz(50);
-    axis3.setPeriodHertz(50);
-
-    axis1.attach(_axisPin1, min, max);
-    axis2.attach(_axisPin2, min, max);
-    axis3.attach(_axisPin3, min, max);
 }
 
 void Leg::normal()
 {
-    axis1.write(90 + off1);
-    axis2.write(60 + off2);
-    axis3.write(125 + off3);
+    axis1.move(90);
+    axis2.move(60);
+    axis3.move(125);
 }
+
 
 void Leg::forward()
 {
@@ -30,8 +24,8 @@ void Leg::forward()
 
     while((_axis1Counter >= 2) && (_axis2counter >= 60))
     {
-        axis1.write(_axis1Counter + off1);
-        axis2.write(_axis2counter + off2);
+        axis1.move(_axis1Counter);
+        axis2.move(_axis2counter);
         
         _axis1Counter -= 2;
         
@@ -46,37 +40,13 @@ void Leg::forward()
 
     while(_axis1Counter < 90)
     {
-        axis1.write(_axis1Counter + off1);
+        axis1.move(_axis1Counter);
         _axis1Counter++;
         delay(20);
     }
 }
 
-void Leg::setOffset1(int _offSet){off1 = _offSet;}
-
-void Leg::setOffset2(int _offSet){off2 = _offSet;}
-
-void Leg::setOffset3(int _offSet){off3 = _offSet;}
-
-
 void Leg::test(int degrees)
 {
-    Serial.println(degrees + off1);
-}
-
-// ------ FOR TESTING PURPOSES ----------------
-
-void Leg::ax1(int degrees)
-{
-    axis1.write(degrees);
-}
-
-void Leg::ax2(int degrees)
-{
-    axis2.write(degrees);
-}
-
-void Leg::ax3(int degrees)
-{
-    axis3.write(degrees);
+    Serial.println(degrees);
 }
