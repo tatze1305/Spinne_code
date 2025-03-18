@@ -1,8 +1,10 @@
 #include <Arduino.h>
-#include <leg.h>
-#include <axis.h>
+
 #include <ESP32Servo.h>
 
+#include <leg.h>
+#include <axis.h>
+#include <quadbug.h>
 
 /// Front Left
 Axis fl_axis1(27); 
@@ -30,8 +32,6 @@ Leg back_right(br_axis1, br_axis2, br_axis3);
 
 
 
-Servo test;
-
 
 
 void setup() {
@@ -46,11 +46,8 @@ void setup() {
 }
 
 void loop() {
-    //back_left.forward();
-yield();
-    //front_left.forward();
-    
-    //back_right.forward();
-
-    //front_right.forward();
+    back_left.forward();
+    front_left.forward();
+    back_right.forward();
+    front_right.forward();
 };

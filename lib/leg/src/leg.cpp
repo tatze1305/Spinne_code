@@ -19,8 +19,8 @@ void Leg::normal()
 
 void Leg::forward(int speed)
 {
-    int _axis1Counter = 90;
-    int _axis2counter = 60;
+    uint8_t _axis1Counter = 90;
+    uint8_t _axis2counter = 60;
 
     while((_axis1Counter >= 2) && (_axis2counter >= 60))
     {
@@ -36,13 +36,6 @@ void Leg::forward(int speed)
             _axis2counter -= 2;
         }
         delay(speed);
-    }
-
-    while(_axis1Counter < 90)
-    {
-        axis1.move(_axis1Counter);
-        _axis1Counter++;
-        delay(speed/2);
     }
 }
 
