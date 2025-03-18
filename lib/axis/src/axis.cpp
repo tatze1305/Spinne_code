@@ -1,8 +1,8 @@
 #include "axis.h"
 
-Axis::Axis(int& _pin, int _offSet, int min, int max) : offSet(_offSet)
+Axis::Axis(int _pin, int _offSet, int _hertz, int min, int max) : offSet(_offSet)
 {
-    axis.setPeriodHertz(50);
+    axis.setPeriodHertz(_hertz);
     axis.attach(_pin, min, max);
 }
 

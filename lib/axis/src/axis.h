@@ -6,7 +6,7 @@
 class Axis
 {
 public:
-    Axis(int& _pin, int _offSet = 0, int min = 500, int max = 2500);
+    Axis(int _pin, int _offSet = 0, int _hertz = 50, int min = 500, int max = 2500);
 
     void move(int degrees);
 

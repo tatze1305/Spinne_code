@@ -1,7 +1,7 @@
 #include <leg.h>
 
 
-Leg::Leg(Axis const& _axisPin1, Axis const& _axisPin2, Axis const& _axisPin3) : axis1(_axisPin1), axis2(_axisPin2), axis3(_axisPin3)
+Leg::Leg(Axis &_axisPin1, Axis &_axisPin2, Axis &_axisPin3) : axis1(_axisPin1), axis2(_axisPin2), axis3(_axisPin3)
 {
     ESP32PWM::allocateTimer(0);
     ESP32PWM::allocateTimer(1);
@@ -14,10 +14,10 @@ void Leg::normal()
     axis1.move(90);
     axis2.move(60);
     axis3.move(125);
+    Serial.println("Written");
 }
 
-
-void Leg::forward()
+void Leg::forward(int speed)
 {
     int _axis1Counter = 90;
     int _axis2counter = 60;
@@ -35,14 +35,14 @@ void Leg::forward()
         } else if(_axis1Counter < 44) {
             _axis2counter -= 2;
         }
-        delay(40);
+        delay(speed);
     }
 
     while(_axis1Counter < 90)
     {
         axis1.move(_axis1Counter);
         _axis1Counter++;
-        delay(20);
+        delay(speed/2);
     }
 }
 
