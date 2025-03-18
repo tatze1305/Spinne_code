@@ -15,7 +15,7 @@ public:
 
     void test(int degrees);
 
-private:
+//private:
     Axis &axis1, &axis2, &axis3;
 };
 
