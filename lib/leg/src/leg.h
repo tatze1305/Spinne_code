@@ -7,15 +7,17 @@
 class Leg
 {
 public:
-    Leg(Axis &_axisPin1, Axis &_axisPin2, Axis &_axisPin3);
+    Leg(Axis &_axis1, Axis &_axis2, Axis &_axis3);
 
     void normal();
 
     void forward(int speed = 40);
 
-    void test(int degrees);
+    void move(int degrees);
 
-//private:
+    void transport();
+
+private:
     Axis &axis1, &axis2, &axis3;
 };
 

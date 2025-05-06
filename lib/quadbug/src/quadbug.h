@@ -7,7 +7,9 @@ class QuadBug {
 public:
     QuadBug(Leg &frontLeft, Leg &frontRight, Leg &backLeft, Leg &backRight);
 
-    void forward();
+    void forward(int speed = 40);
+    void transport();
+    void normal();
     //void backward();
     //void left();
     //void right();
